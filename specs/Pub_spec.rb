@@ -11,6 +11,8 @@ class PubTest < Minitest::Test
     @drink2 = Drink.new("Wine", 3)
     @drink3 = Drink.new("Rum", 4)
     @pub = Pub.new("Codeclan", 500, [@drink1, @drink2, @drink3])
+    @customer1 = Customer.new("Raul", 500, 36)
+    @customer2 = Customer.new("Rick", 5, 38)
 
   end
 
@@ -27,13 +29,15 @@ class PubTest < Minitest::Test
   end
 
   def test_sell__beer
-    @pub.sell_drink(@drink1)
+    @pub.sell_drink(@drink1, @customer1)
     assert_equal(505, @pub.till_amount)
+    assert_equal(495, @customer1.wallet_amount)
   end
 
   def test_sell__rum
-    @pub.sell_drink(@drink3)
+    @pub.sell_drink(@drink3, @customer1)
     assert_equal(504, @pub.till_amount)
+    assert_equal(496, @customer1.wallet_amount)
   end
 
 

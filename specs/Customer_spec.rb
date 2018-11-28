@@ -13,7 +13,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_customer_wallet_contents
-    assert_equal(100, @customer1.wallet)
+    assert_equal(100, @customer1.wallet_amount)
   end
 
   def test_customer_age
