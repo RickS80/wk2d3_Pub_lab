@@ -26,7 +26,15 @@ class PubTest < Minitest::Test
     assert_equal([@drink1,@drink2,@drink3],@pub.drink_stock)
   end
 
+  def test_sell__beer
+    @pub.sell_drink(@drink1)
+    assert_equal(505, @pub.till_amount)
+  end
 
+  def test_sell__rum
+    @pub.sell_drink(@drink3)
+    assert_equal(504, @pub.till_amount)
+  end
 
 
 end
