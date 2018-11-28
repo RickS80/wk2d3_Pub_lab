@@ -3,6 +3,7 @@ require('minitest/rg')
 require_relative('../Pub')
 require_relative('../Drink')
 require_relative('../Customer')
+require_relative('../Food')
 
 class PubTest < Minitest::Test
 
@@ -13,6 +14,7 @@ class PubTest < Minitest::Test
     @pub = Pub.new("Codeclan", 500, [@drink1, @drink2, @drink3])
     @customer1 = Customer.new("Raul", 500, 36, 0)
     @customer2 = Customer.new("Rick", 5, 15, 0)
+    @food1 = Food.new("haggis", 30, 23)
 
   end
 
@@ -59,7 +61,14 @@ class PubTest < Minitest::Test
     @customer1.drunkenness += @drink1.alcohol_content
     @customer1.drunkenness += @drink3.alcohol_content
     assert_equal(75, @customer1.drunkenness)
-  
+
   end
+
+  def test_alcohol_level_after_food
+    @customer1.drunkenness += @drink1.alcohol_content
+    @customer1.drunkenness -= @food1.rejuvenation
+    assert_equal(2, @customer1.drunkenness)
+  end
+
 
 end
