@@ -70,5 +70,13 @@ class PubTest < Minitest::Test
     assert_equal(2, @customer1.drunkenness)
   end
 
+  def test_stock_value
+    stock_value = 0
+    stock_value += @drink1.drink_price
+    stock_value += @drink2.drink_price
+    stock_value += @drink3.drink_price
+    assert_equal(12, stock_value)
+  end
+
 
 end

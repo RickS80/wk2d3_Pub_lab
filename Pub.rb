@@ -19,4 +19,6 @@ attr_accessor :pub_name, :till_amount, :drink_stock
     end
   end
 
+
+
 end
