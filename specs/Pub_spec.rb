@@ -7,7 +7,7 @@ require_relative('../Customer')
 class PubTest < Minitest::Test
 
   def setup
-    @drink1 = Drink.new("Beer", 5, 20)
+    @drink1 = Drink.new("Beer", 5, 25)
     @drink2 = Drink.new("Wine", 3, 30)
     @drink3 = Drink.new("Rum", 4, 50)
     @pub = Pub.new("Codeclan", 500, [@drink1, @drink2, @drink3])
@@ -48,6 +48,18 @@ class PubTest < Minitest::Test
   def test_age__fail
     @pub.sell_drink(@drink1, @customer2)
     assert_equal("Get out!", @pub.sell_drink(@drink1, @customer2))
+  end
+
+  def test_alcohol_level__pass
+    @customer1.drunkenness += @drink1.alcohol_content
+    assert_equal(25, @customer1.drunkenness)
+  end
+
+  def test_alcohol_level__fail
+    @customer1.drunkenness += @drink1.alcohol_content
+    @customer1.drunkenness += @drink3.alcohol_content
+    assert_equal(75, @customer1.drunkenness)
+  
   end
 
 end
